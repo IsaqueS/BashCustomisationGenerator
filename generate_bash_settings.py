@@ -30,10 +30,16 @@ def main():
 
     aliases: list[str] = ["#!/bin/bash", "# Script to generate bash file by IsaqueS", "# repo: https://github.com/IsaqueS/BashCustomisationGenerator", "# Aliases starts here:"]
 
+    aliases_text = []
+
     for alias in data.get("alias", {}).keys():
-        aliases.append(
+        aliases_text.append(
             f"alias {alias}=\"{data["alias"][alias]}\""
         )
+    
+    aliases.append("\n".join(aliases_text))
+
+    del aliases_text
     
     aliases.append("# python/uv global remaps starts here:")
     
@@ -48,7 +54,7 @@ def main():
             print("The first value of the list must be an valid path! from key: %s"%python_script)
             sys.exit(1)
 
-        aliases.append("%s () {\t\n(cd \"%s\" && uv run \"%s\" \"$@\")\n}"%(
+        aliases.append("%s () {    \n(cd \"%s\" && uv run \"%s\" \"$@\")\n}"%(
             python_script,
             os.path.expanduser(alias[0]),
             alias[1]
