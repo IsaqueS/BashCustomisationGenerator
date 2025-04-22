@@ -28,7 +28,7 @@ def main():
     else:
         print(f"Using default export path: {os.path.expanduser(BASH_EXPORT_PATH)}\n\nTo define an path add an path value on bash.toml file, like this: 'path='[path here!]'")
 
-    aliases: list[str] = ["#!/bin/bash", "# Script to generate bash file by IsaqueS", "# repo: ", "# Aliases starts here:"]
+    aliases: list[str] = ["#!/bin/bash", "# Script to generate bash file by IsaqueS", "# repo: https://github.com/IsaqueS/BashCustomisationGenerator", "# Aliases starts here:"]
 
     for alias in data.get("alias", {}).keys():
         aliases.append(
