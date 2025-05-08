@@ -69,6 +69,10 @@ def main():
             file_text = file_text.replace("#!/bin/bash", "")
             aliases.append(file_text)
 
+    folder_path = Path(os.path.expanduser(BASH_EXPORT_PATH)).parent
+    if not os.path.exists(folder_path):
+        os.makedirs(folder_path)
+
     with open(os.path.expanduser(BASH_EXPORT_PATH), "wt") as file:
         file.write("\n\n".join(aliases))
     
